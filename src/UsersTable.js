@@ -1,18 +1,79 @@
-import { Paper, TableBody, TableCell, TableContainer } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 
 const UsersTable = (props) => {
-  <TableContainer component={Paper}>
-    <table>
-      <thead>
-        <tr>
-          <TableCell>ID</TableCell>
-          <TableCell>Name</TableCell>
-          <TableCell>Actions</TableCell>
-        </tr>
-      </thead>
-      <TableBody>{props.rows}</TableBody>
-    </table>
-  </TableContainer>;
+  return (
+    //Paper in MUI gives you a material design “sheet of paper” look. It has background color (usually white), rounded corners,
+    //  and supports elevation (shadows). This makes your table look more like a neat, card-style component rather than just plain text.
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.Rows && props.Rows.length > 0 ? (
+            props.Rows.map((row) => (
+              <TableRow
+                key={row.id}
+                //is an inline style (using MUI’s sx prop) that applies a CSS selector to remove borders from the last row of the table.
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>
+                  <Button
+                    sx={{
+                      margin: "0px 10px",
+                      backgroundColor: "black",
+                      fontcolor: "white",
+                    }}
+                    onClick={() => {}}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    sx={{ margin: "0px 10px", backgroundColor: "black" }}
+                    onClick={() => {}}
+                  >
+                    Delete
+                  </Button>
+                  <Button
+                    sx={{ margin: "20px 10px", backgroundColor: "black" }}
+                    onClick={() => {}}
+                  >
+                    Favorite
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow
+              //is an inline style (using MUI’s sx prop) that applies a CSS selector to remove borders from the last row of the table.
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell colSpan={3} align="center">
+                No users found
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 };
 
 export default UsersTable;
