@@ -17,9 +17,9 @@ const UsersTable = (props) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Actions</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>ID</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
